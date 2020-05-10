@@ -23,11 +23,16 @@ function App() {
               highlights={highlights}
             />
           </div>
-          Highlights ID:
+          <div className="whitespace-normal">
+            Highlights ID. You may enter here<br></br>a list of diastereotopic
+            ID
+          </div>
+
           <br />
           <textarea
             value={highlights.join(',')}
             cols="30"
+            rows="10"
             type="text"
             className="border-gray-500 border-2"
             width="100"

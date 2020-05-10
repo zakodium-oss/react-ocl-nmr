@@ -19,12 +19,12 @@ export default function ClickedDebug(props) {
             <div className="flex-col">
               <p className="text-xl">List of hydrogens</p>
               {props.selected.hydrogenOCLIDs.map((oclid) => (
-                <>
+                <div key={oclid}>
                   <pre>{oclid}</pre>
                   <div onClick={() => onClick([oclid])}>
                     <IdcodeSvgRenderer idcode={oclid} />
                   </div>
-                </>
+                </div>
               ))}
             </div>
           )}

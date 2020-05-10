@@ -3,13 +3,15 @@
 This component allows to easily assign a molecule to an NMR spectrum. It is aware
 of diastereotopic atoms and allows to select and highlight an atom.
 
+By default it will display the equivalent atoms.
+
 
 The following props are available:
 
-* molfile
-* setMolfile
-* setSelectedAtom
-* highlight
+- molfile: original molfile
+- setMolfile: callback allowing to define an updated molfile when hydrogens are expanded
+- setSelectedAtom: callback when an atom is clicked. The value contains the diastereotopicID
+- highlights: array of diastereotopicID
 
 ## Demo of the project
 

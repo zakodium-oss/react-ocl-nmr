@@ -62,24 +62,26 @@ export default function OCLnmr(props) {
     onAtomLeave: () => {
       setOverHighlights([]);
     },
-    onAtomClick: (atomID) => {
+    onAtomClick: (atomID, event) => {
       setOverHighlights([]);
       setSelectedAtom(diaIDs[atomID]);
-      let implicitHydrogens = getAtomsInfo(molecule)[atomID].implicitHydrogens;
-      if (implicitHydrogens === 0) {
-        let atomsToDelete = [];
-        for (let i = 0; i < molecule.getAllConnAtoms(atomID); i++) {
-          let connectedAtom = molecule.getConnAtom(atomID, i);
-          if (molecule.getAtomicNo(connectedAtom) === 1) {
-            atomsToDelete.push(connectedAtom);
+      if (event.shiftKey) {
+        let implicitHydrogens = getAtomsInfo(molecule)[atomID]
+          .implicitHydrogens;
+        if (implicitHydrogens === 0) {
+          let atomsToDelete = [];
+          for (let i = 0; i < molecule.getAllConnAtoms(atomID); i++) {
+            let connectedAtom = molecule.getConnAtom(atomID, i);
+            if (molecule.getAtomicNo(connectedAtom) === 1) {
+              atomsToDelete.push(connectedAtom);
+            }
           }
+          molecule.deleteAtoms(atomsToDelete);
+        } else {
+          molecule.addImplicitHydrogens(atomID);
         }
-        molecule.deleteAtoms(atomsToDelete);
-      } else {
-        molecule.addImplicitHydrogens(atomID);
+        setMolfile(molecule.toMolfileV3());
       }
-
-      setMolfile(molecule.toMolfileV3());
     },
   };
 

@@ -10,9 +10,9 @@ import { MolfileSvgRenderer } from 'react-ocl';
 initOCL(OCL);
 
 export default function OCLnmr(props) {
-  const { molfile, setMolfile, setSelectedAtom, highlight } = props;
-  const [overHighlight, setOverHighlight] = useState([]);
-  const [externalHighlight, setExternalHighlight] = useState([]);
+  const { molfile, setMolfile, setSelectedAtom, highlights } = props;
+  const [overHighlights, setOverHighlights] = useState([]);
+  const [externalHighlights, setExternalHighlights] = useState([]);
 
   const { molecule, diaIDs, diaIDsIndex } = useMemo(() => {
     const memoMolecule = OCL.Molecule.fromMolfile(molfile);
@@ -34,33 +34,36 @@ export default function OCLnmr(props) {
 
   useEffect(() => {
     // if the highlight is a proton and there is no proton we will highlight the carbon
-    let atoms = diaIDsIndex[highlight];
-    if (!atoms) {
-      setExternalHighlight([]);
-      return;
-    }
+    let allAtoms = [];
     let linked = [];
-    for (let atom of atoms) {
-      if (atom > molecule.getAllAtoms() && diaIDs[atom].heavyAtom) {
-        // implicit hydrogen
-        linked.push(...diaIDsIndex[diaIDs[atom].heavyAtom]);
+
+    for (let highlight of highlights) {
+      let atoms = diaIDsIndex[highlight];
+      if (!atoms) continue;
+      allAtoms.push(...atoms);
+      for (let atom of atoms) {
+        if (atom > molecule.getAllAtoms() && diaIDs[atom].heavyAtom) {
+          // implicit hydrogen
+          linked.push(...diaIDsIndex[diaIDs[atom].heavyAtom]);
+        }
       }
     }
-    setExternalHighlight([...atoms, ...linked]);
-  }, [highlight, diaIDsIndex, diaIDs, molecule]);
+    setExternalHighlights([...allAtoms, ...linked]);
+  }, [highlights, diaIDsIndex, diaIDs, molecule]);
 
   const options = {
-    atomHighlight: overHighlight.length > 0 ? overHighlight : externalHighlight,
+    atomHighlight:
+      overHighlights.length > 0 ? overHighlights : externalHighlights,
     atomHighlightOpacity: 0.3,
-    atomHighlightColor: overHighlight.length > 0 ? 'red' : 'yellow',
+    atomHighlightColor: overHighlights.length > 0 ? 'red' : 'yellow',
     onAtomEnter: (atomID) => {
-      setOverHighlight(diaIDsIndex[diaIDs[atomID].oclID]);
+      setOverHighlights(diaIDsIndex[diaIDs[atomID].oclID]);
     },
     onAtomLeave: () => {
-      setOverHighlight([]);
+      setOverHighlights([]);
     },
     onAtomClick: (atomID) => {
-      setOverHighlight([]);
+      setOverHighlights([]);
       setSelectedAtom(diaIDs[atomID]);
       let implicitHydrogens = getAtomsInfo(molecule)[atomID].implicitHydrogens;
       if (implicitHydrogens === 0) {

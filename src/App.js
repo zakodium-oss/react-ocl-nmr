@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './assets/tailwind.css';
 
@@ -9,7 +9,7 @@ import { demoMolfile } from './demoMolfile';
 function App() {
   const [molfile, setMolfile] = useState(demoMolfile);
   const [selectedAtom, setSelectedAtom] = useState({});
-  const [highlight, setHighlight] = useState([]); // array of diaIDs
+  const [highlights, setHighlights] = useState([]); // array of diaIDs
 
   return (
     <>
@@ -20,16 +20,20 @@ function App() {
               molfile={molfile}
               setMolfile={setMolfile}
               setSelectedAtom={setSelectedAtom}
-              highlight={highlight}
+              highlights={highlights}
             />
           </div>
-          Highlight ID:{' '}
-          <input
-            value={highlight.join(',')}
+          Highlights ID:
+          <br />
+          <textarea
+            value={highlights.join(',')}
+            cols="30"
             type="text"
             className="border-gray-500 border-2"
             width="100"
-            onChange={(event) => setHighlight(event.target.value.split(','))}
+            onChange={(event) =>
+              setHighlights(event.target.value.split(/[, \r\n\t]+/))
+            }
           />
         </div>
 
@@ -38,8 +42,9 @@ function App() {
           className="font-mono text-sm"
           cols="60"
           rows="40"
+          readOnly
         />
-        <ClickedDebug selected={selectedAtom} onClick={setHighlight} />
+        <ClickedDebug selected={selectedAtom} onClick={setHighlights} />
       </div>
     </>
   );

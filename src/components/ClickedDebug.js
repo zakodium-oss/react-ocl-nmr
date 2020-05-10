@@ -12,7 +12,7 @@ export default function ClickedDebug(props) {
             <p className="text-xl">Selected</p>
             <pre>{selected.oclID}</pre>
             <div onClick={() => onClick([selected.oclID])}>
-              <IdcodeSvgRenderer idcode={selected.oclID} />
+              {selected.oclID && <IdcodeSvgRenderer idcode={selected.oclID} />}
             </div>
           </div>
           {selected.nbHydrogens && (

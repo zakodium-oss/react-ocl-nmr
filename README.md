@@ -1,8 +1,17 @@
 # react-ocl-nmr-example
 
-.
+This component allows to easily assign a molecule to an NMR spectrum. It is aware
+of diastereotopic atoms and allows to select and highlight an atom.
 
-## Starting the project
+
+The following props are available:
+
+* molfile
+* setMolfile
+* setSelectedAtom
+* highlight
+
+## Demo of the project
 
 `$ npm start`
 

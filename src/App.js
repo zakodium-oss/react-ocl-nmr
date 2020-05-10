@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import './assets/tailwind.css';
 
 import ClickedDebug from './components/ClickedDebug';
-import OCLnmr from './components/OCLnmr';
+import { OCLnmr } from './components/OCLnmr';
 import { demoMolfile } from './demoMolfile';
 
 function App() {

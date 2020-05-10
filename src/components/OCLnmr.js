@@ -9,7 +9,7 @@ import { MolfileSvgRenderer } from 'react-ocl';
 
 initOCL(OCL);
 
-export default function OCLnmr(props) {
+export function OCLnmr(props) {
   const { molfile, setMolfile, setSelectedAtom, highlights } = props;
   const [overHighlights, setOverHighlights] = useState([]);
   const [externalHighlights, setExternalHighlights] = useState([]);

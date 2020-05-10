@@ -63,9 +63,9 @@ export default function OCLnmr(props) {
       setOverHighlights([]);
     },
     onAtomClick: (atomID, event) => {
-      setOverHighlights([]);
       setSelectedAtom(diaIDs[atomID]);
       if (event.shiftKey) {
+        setOverHighlights([]);
         let implicitHydrogens = getAtomsInfo(molecule)[atomID]
           .implicitHydrogens;
         if (implicitHydrogens === 0) {

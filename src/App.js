@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './assets/tailwind.css';
 
@@ -8,9 +8,13 @@ import { demoMolfile } from './demoMolfile';
 
 function App() {
   const [molfile, setMolfile] = useState(demoMolfile);
-  const [selectedAtom, setSelectedAtom] = useState('');
-  const [hoverAtom, setHoverAtom] = useState('');
+  const [selectedAtom, setSelectedAtom] = useState({});
+  const [hoverAtom, setHoverAtom] = useState({});
   const [highlights, setHighlights] = useState([]); // array of diaIDs
+
+  useEffect(() => {
+    console.log(JSON.stringify(hoverAtom, undefined, 2));
+  }, [selectedAtom, hoverAtom]);
 
   return (
     <>
@@ -52,7 +56,6 @@ function App() {
           readOnly
         />
         <ClickedDebug selected={selectedAtom} onClick={setHighlights} />
-        <p>{hoverAtom}</p>
       </div>
     </>
   );

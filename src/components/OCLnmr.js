@@ -64,11 +64,11 @@ export default function OCLnmr(props) {
     atomHighlightColor: overHighlights.length > 0 ? 'red' : 'yellow',
     onAtomEnter: (atomID) => {
       setOverHighlights(diaIDsIndex[diaIDs[atomID].oclID]);
-      setHoverAtom(diaIDs[atomID].oclID);
+      setHoverAtom(diaIDs[atomID]);
     },
     onAtomLeave: () => {
       setOverHighlights([]);
-      setHoverAtom('');
+      setHoverAtom({});
     },
     onAtomClick: (atomID, event) => {
       setSelectedAtom(diaIDs[atomID]);

@@ -10,6 +10,7 @@ The following props are available:
 - molfile: original molfile
 - setMolfile: callback allowing to define an updated molfile when hydrogens are expanded
 - setSelectedAtom: callback when an atom is clicked. The value contains the diastereotopicID
+- setHoverAtom: callback when an atom is hovered. The value contains the diastereotopicID
 - highlights: array of diastereotopicID
 
 ## Demo of the project

@@ -8,7 +8,8 @@ import { demoMolfile } from './demoMolfile';
 
 function App() {
   const [molfile, setMolfile] = useState(demoMolfile);
-  const [selectedAtom, setSelectedAtom] = useState({});
+  const [selectedAtom, setSelectedAtom] = useState('');
+  const [hoverAtom, setHoverAtom] = useState('');
   const [highlights, setHighlights] = useState([]); // array of diaIDs
 
   return (
@@ -20,6 +21,7 @@ function App() {
               molfile={molfile}
               setMolfile={setMolfile}
               setSelectedAtom={setSelectedAtom}
+              setHoverAtom={setHoverAtom}
               highlights={highlights}
             />
           </div>
@@ -50,6 +52,7 @@ function App() {
           readOnly
         />
         <ClickedDebug selected={selectedAtom} onClick={setHighlights} />
+        <p>{hoverAtom}</p>
       </div>
     </>
   );

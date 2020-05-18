@@ -10,7 +10,13 @@ import { MolfileSvgRenderer } from 'react-ocl';
 initOCL(OCL);
 
 export default function OCLnmr(props) {
-  const { molfile, setMolfile, setSelectedAtom, highlights } = props;
+  const {
+    molfile,
+    setMolfile,
+    setSelectedAtom,
+    highlights,
+    setHoverAtom,
+  } = props;
   const [overHighlights, setOverHighlights] = useState([]);
   const [externalHighlights, setExternalHighlights] = useState([]);
 
@@ -58,9 +64,11 @@ export default function OCLnmr(props) {
     atomHighlightColor: overHighlights.length > 0 ? 'red' : 'yellow',
     onAtomEnter: (atomID) => {
       setOverHighlights(diaIDsIndex[diaIDs[atomID].oclID]);
+      setHoverAtom(diaIDs[atomID].oclID);
     },
     onAtomLeave: () => {
       setOverHighlights([]);
+      setHoverAtom('');
     },
     onAtomClick: (atomID, event) => {
       setSelectedAtom(diaIDs[atomID]);

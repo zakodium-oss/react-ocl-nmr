@@ -27,6 +27,8 @@ function App() {
               setSelectedAtom={setSelectedAtom}
               setHoverAtom={setHoverAtom}
               highlights={highlights}
+              internalAtomHighlightColor="blue"
+              internalAtomHighlightOpacity="0.7"
             />
           </div>
           <div className="whitespace-normal">

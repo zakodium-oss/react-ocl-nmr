@@ -16,6 +16,10 @@ export default function OCLnmr(props) {
     setSelectedAtom,
     highlights,
     setHoverAtom,
+    atomHighlightColor = 'yellow',
+    internalAtomHighlightColor = 'red',
+    atomHighlightOpacity = 0.3,
+    internalAtomHighlightOpacity = 0.3,
   } = props;
   const [overHighlights, setOverHighlights] = useState([]);
   const [externalHighlights, setExternalHighlights] = useState([]);
@@ -61,8 +65,15 @@ export default function OCLnmr(props) {
   const options = {
     atomHighlight:
       overHighlights.length > 0 ? overHighlights : externalHighlights,
-    atomHighlightOpacity: 0.3,
-    atomHighlightColor: overHighlights.length > 0 ? 'red' : 'yellow',
+    atomHighlightOpacity:
+      overHighlights.length > 0
+        ? internalAtomHighlightOpacity
+        : atomHighlightOpacity,
+
+    atomHighlightColor:
+      overHighlights.length > 0
+        ? internalAtomHighlightColor
+        : atomHighlightColor,
     onAtomEnter: (atomID) => {
       setOverHighlights(diaIDsIndex[diaIDs[atomID].oclID]);
       setHoverAtom(diaIDs[atomID]);

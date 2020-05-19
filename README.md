@@ -12,6 +12,10 @@ The following props are available:
 - setSelectedAtom: callback when an atom is clicked. The value contains an ojbect as described after diastereotopicID
 - setHoverAtom: callback when an atom is hovered. The value contains the diastereotopicID
 - highlights: array of diastereotopicID
+- atomHighlightColor: color for highlight (default 'yellow')
+- atomHighlightOpacity: opacity for highlight (default 0.3)
+- internalAtomHighlightColor: color for equivalent atoms (default 'red')
+- internalAtomHighlightOpacity: opacity for equivalent atoms (default 0.3)
 
 Callback for hover and clicked atom returns an object of the following kind:
 

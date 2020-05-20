@@ -36,6 +36,9 @@ export default function OCLnmr(props) {
       if (!memoDiaIDsIndex[diaID.oclID]) memoDiaIDsIndex[diaID.oclID] = [];
       memoDiaIDsIndex[diaID.oclID].push(i);
     }
+    for (let diaID of memoDiaIDs) {
+      diaID.nbAtoms = memoDiaIDsIndex[diaID.oclID].length;
+    }
     return {
       molecule: memoMolecule,
       diaIDs: memoDiaIDs,

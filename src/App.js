@@ -14,6 +14,7 @@ function App() {
   const [highlights, setHighlights] = useState([]); // array of diaIDs
 
   useEffect(() => {
+    // eslint-disable-next-line no-console
     console.log(JSON.stringify(hoverAtom, undefined, 2));
   }, [selectedAtom, hoverAtom]);
 

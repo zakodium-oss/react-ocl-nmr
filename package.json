@@ -41,7 +41,8 @@
   "eslintConfig": {
     "extends": "@zakodium/eslint-config/react",
     "rules": {
-      "import/no-unresolved": "off"
+      "import/no-unresolved": "off",
+      "import/no-unassigned-import": "off"
     }
   },
   "browserslist": {

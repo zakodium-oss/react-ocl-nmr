@@ -39,7 +39,7 @@ npm install react-ocl-nmr openchemlib
 Then add to your application:
 
 ```js
-import { initOCL } from 'openchemlib-utils';
+import { initOCL } from 'react-ocl-nmr';
 import OCL from 'openchemlib'; // Or import any other OCL version that you need.
 
 initOCL(OCL);

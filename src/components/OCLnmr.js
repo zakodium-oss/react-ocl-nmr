@@ -1,6 +1,12 @@
-import { getDiastereotopicAtomIDsAndH, getAtomsInfo } from 'openchemlib-utils';
+import {
+  initOCL,
+  getDiastereotopicAtomIDsAndH,
+  getAtomsInfo,
+} from 'openchemlib-utils';
 import React, { useState, useMemo, useEffect } from 'react';
 import MolfileSvgRenderer from 'react-ocl/lib/components/MolfileSvgRenderer';
+
+export { initOCL };
 
 export default function OCLnmr(props) {
   const {

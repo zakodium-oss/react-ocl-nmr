@@ -4,7 +4,7 @@ import {
   getAtomsInfo,
 } from 'openchemlib-utils';
 import React, { useState, useMemo, useEffect } from 'react';
-import MolfileSvgRenderer from 'react-ocl/lib/components/MolfileSvgRenderer';
+import { MolfileSvgRenderer } from 'react-ocl/base';
 
 export { initOCL };
 

@@ -7,6 +7,7 @@ By default it will display the equivalent atoms.
 
 The following props are available:
 
+- OCL: reference to the OpenChemLib library
 - molfile: original molfile
 - setMolfile: callback allowing to define an updated molfile when hydrogens are expanded
 - setSelectedAtom: callback when an atom is clicked. The value contains an ojbect as described after diastereotopicID
@@ -28,6 +29,21 @@ Callback for hover and clicked atom returns an object of the following kind:
 ```
 
 `oclID` contains the identifier of the selected / hovered atom and if hydrogens are connected to this atom an array of hydrogens are also available.
+
+## Install the library
+
+```console
+npm install react-ocl-nmr openchemlib
+```
+
+Then add to your application:
+
+```js
+import { initOCL } from 'openchemlib-utils';
+import OCL from 'openchemlib'; // Or import any other OCL version that you need.
+
+initOCL(OCL);
+```
 
 ## Demo of the project
 

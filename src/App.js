@@ -1,3 +1,4 @@
+import OCL from 'openchemlib';
 import React, { useState, useEffect } from 'react';
 
 import './assets/tailwind.css';
@@ -22,6 +23,7 @@ function App() {
         <div className="flex-col">
           <div>
             <OCLnmr
+              OCL={OCL}
               molfile={molfile}
               setMolfile={setMolfile}
               setSelectedAtom={setSelectedAtom}
@@ -32,8 +34,8 @@ function App() {
             />
           </div>
           <div className="whitespace-normal">
-            Highlights ID. You may enter here<br></br>a list of diastereotopic
-            ID
+            Highlights ID. You may enter here
+            <br />a list of diastereotopic ID
           </div>
 
           <br />
@@ -42,7 +44,7 @@ function App() {
             cols="30"
             rows="10"
             type="text"
-            className="border-gray-500 border-2"
+            className="border-2 border-gray-500"
             width="100"
             onChange={(event) =>
               setHighlights(event.target.value.split(/[, \r\n\t]+/))

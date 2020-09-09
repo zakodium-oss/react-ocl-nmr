@@ -1,16 +1,10 @@
-import OCL from 'openchemlib';
-import {
-  initOCL,
-  getDiastereotopicAtomIDsAndH,
-  getAtomsInfo,
-} from 'openchemlib-utils';
+import { getDiastereotopicAtomIDsAndH, getAtomsInfo } from 'openchemlib-utils';
 import React, { useState, useMemo, useEffect } from 'react';
-import { MolfileSvgRenderer } from 'react-ocl';
-
-initOCL(OCL);
+import MolfileSvgRenderer from 'react-ocl/lib/components/MolfileSvgRenderer';
 
 export default function OCLnmr(props) {
   const {
+    OCL,
     molfile,
     setMolfile,
     setSelectedAtom,
@@ -44,7 +38,7 @@ export default function OCLnmr(props) {
       diaIDs: memoDiaIDs,
       diaIDsIndex: memoDiaIDsIndex,
     };
-  }, [molfile]);
+  }, [molfile, OCL]);
 
   useEffect(() => {
     // if the highlight is a proton and there is no proton we will highlight the carbon

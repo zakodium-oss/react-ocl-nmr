@@ -1,8 +1,12 @@
+import OCL from 'openchemlib';
+import { initOCL } from 'openchemlib-utils';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 import './assets/main.css';
 import App from './App';
+
+initOCL(OCL);
 
 ReactDOM.render(
   <React.StrictMode>

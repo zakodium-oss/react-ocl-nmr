@@ -20,8 +20,8 @@
   },
   "dependencies": {
     "openchemlib": "^7.2.3",
-    "openchemlib-utils": "^0.4.0",
-    "react-ocl": "^4.2.0"
+    "openchemlib-utils": "^0.5.0",
+    "react-ocl": "^4.2.1"
   },
   "scripts": {
     "clean-lib": "rimraf lib",
@@ -37,8 +37,7 @@
     "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
   },
   "eslintConfig": {
-    "extends": "cheminfo-react",
-    "parser": "babel-eslint",
+    "extends": "@zakodium/eslint-config/react",
     "rules": {
       "import/no-unresolved": "off"
     }
@@ -56,28 +55,22 @@
     ]
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.6",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-react": "^7.9.4",
-    "@testing-library/jest-dom": "^5.7.0",
-    "@testing-library/react": "^10.0.4",
-    "@testing-library/user-event": "^10.1.2",
-    "autoprefixer": "^9.7.6",
-    "eslint": "^6.8.0",
-    "eslint-config-cheminfo-react": "^4.0.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jest": "^23.10.0",
-    "eslint-plugin-prettier": "^3.1.3",
-    "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^4.0.0",
-    "postcss-cli": "^7.1.1",
-    "prettier": "^2.0.5",
-    "prop-types": "^15.7.2",
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.2",
+    "@testing-library/user-event": "^12.1.4",
+    "@zakodium/eslint-config": "^1.0.5",
+    "autoprefixer": "^9.8.6",
+    "eslint": "^7.8.1",
+    "postcss-cli": "^7.1.2",
+    "prettier": "^2.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1",
+    "react-scripts": "^4.0.0-next.77",
     "rimraf": "^3.0.2",
-    "tailwindcss": "^1.4.6"
+    "tailwindcss": "^1.8.5"
   }
 }

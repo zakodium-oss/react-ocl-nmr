@@ -22,8 +22,8 @@
     "openchemlib": "*"
   },
   "dependencies": {
-    "openchemlib-utils": "^0.5.0",
-    "react-ocl": "^4.3.0"
+    "openchemlib-utils": "^0.6.1",
+    "react-ocl": "^4.3.1"
   },
   "scripts": {
     "clean-lib": "rimraf lib",
@@ -58,23 +58,23 @@
     ]
   },
   "devDependencies": {
-    "@babel/cli": "^7.11.6",
-    "@babel/core": "^7.11.6",
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@babel/preset-react": "^7.10.4",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.0.2",
-    "@testing-library/user-event": "^12.1.4",
-    "@zakodium/eslint-config": "^1.0.5",
-    "autoprefixer": "^9.8.6",
-    "eslint": "^7.8.1",
+    "@babel/cli": "^7.13.0",
+    "@babel/core": "^7.13.1",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/preset-react": "^7.12.13",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.7.3",
+    "@zakodium/eslint-config": "^3.0.1",
+    "autoprefixer": "^10.2.4",
+    "eslint": "^7.20.0",
     "openchemlib": "^7.2.3",
-    "postcss-cli": "^7.1.2",
-    "prettier": "^2.1.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "^4.0.0-next.77",
+    "postcss-cli": "^8.3.1",
+    "prettier": "^2.2.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "^4.0.3",
     "rimraf": "^3.0.2",
-    "tailwindcss": "^1.8.5"
+    "tailwindcss": "^2.0.3"
   }
 }

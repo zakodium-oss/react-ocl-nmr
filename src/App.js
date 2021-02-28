@@ -12,11 +12,14 @@ function App() {
   const [selectedAtom, setSelectedAtom] = useState({});
   const [hoverAtom, setHoverAtom] = useState({});
   const [highlights, setHighlights] = useState([]); // array of diaIDs
+  const [arrows, setArrows] = useState([]); // array of diaIDs
 
   useEffect(() => {
     // eslint-disable-next-line no-console
     console.log(JSON.stringify(hoverAtom, undefined, 2));
   }, [selectedAtom, hoverAtom]);
+
+  const grid = [1, 2, 3, 4, 5, 6, 7, 8];
 
   return (
     <>
@@ -30,6 +33,7 @@ function App() {
               setSelectedAtom={setSelectedAtom}
               setHoverAtom={setHoverAtom}
               highlights={highlights}
+              arrows={arrows}
               internalAtomHighlightColor="blue"
               internalAtomHighlightOpacity="0.7"
             />
@@ -38,7 +42,6 @@ function App() {
             Highlights ID. You may enter here
             <br />a list of diastereotopic ID
           </div>
-
           <br />
           <textarea
             value={highlights.join(',')}
@@ -51,6 +54,22 @@ function App() {
               setHighlights(event.target.value.split(/[, \r\n\t]+/))
             }
           />
+          <br />
+          Set arrows:
+          <table>
+            {grid.map((i) => (
+              <tr key={i}>
+                {grid.map((j) => (
+                  <td
+                    key={j}
+                    onClick={() => setArrows([{ atom1: i, atom2: j }])}
+                  >
+                    {i}-{j}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </table>
         </div>
 
         <textarea

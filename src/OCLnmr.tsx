@@ -2,13 +2,27 @@ import {
   initOCL,
   getDiastereotopicAtomIDsAndH,
   getAtomsInfo,
+  // @ts-expect-error: TODO: add types or write in TS
 } from 'openchemlib-utils';
-import React, { useState, useMemo, useEffect } from 'react';
-import { MolfileSvgRenderer } from 'react-ocl/base';
+import { useState, useMemo, useEffect, MouseEvent } from 'react';
+import { MolfileSvgRenderer, IMolfileSvgRendererProps } from 'react-ocl/base';
 
 export { initOCL };
 
-export default function OCLnmr(props) {
+export interface OCLnmrProps
+  extends Omit<
+    IMolfileSvgRendererProps,
+    'atomHighlight' | 'onAtomEnter' | 'onAtomLeave' | 'onAtomClick'
+  > {
+  setMolfile: (molfile: string) => void;
+  setSelectedAtom: (atom: any) => void;
+  highlights: any[];
+  setHoverAtom: (atom: any) => void;
+  internalAtomHighlightColor?: string;
+  internalAtomHighlightOpacity?: number;
+}
+
+export default function OCLnmr(props: OCLnmrProps) {
   const {
     OCL,
     molfile,
@@ -20,16 +34,17 @@ export default function OCLnmr(props) {
     internalAtomHighlightColor = 'red',
     atomHighlightOpacity = 0.3,
     internalAtomHighlightOpacity = 0.3,
+    ...otherProps
   } = props;
-  const [overHighlights, setOverHighlights] = useState([]);
-  const [externalHighlights, setExternalHighlights] = useState([]);
+  const [overHighlights, setOverHighlights] = useState<number[]>([]);
+  const [externalHighlights, setExternalHighlights] = useState<number[]>([]);
 
   const { molecule, diaIDs, diaIDsIndex } = useMemo(() => {
     const memoMolecule = OCL.Molecule.fromMolfile(molfile);
     memoMolecule.ensureHelperArrays(OCL.Molecule.cHelperBitNeighbours);
     memoMolecule.ensureHelperArrays(OCL.Molecule.cHelperNeighbours);
     const memoDiaIDs = getDiastereotopicAtomIDsAndH(memoMolecule);
-    const memoDiaIDsIndex = {};
+    const memoDiaIDsIndex: Record<string, number[]> = {};
     for (let i = 0; i < memoDiaIDs.length; i++) {
       let diaID = memoDiaIDs[i];
       diaID.atomLabel = memoMolecule.getAtomLabel(i) || 'H';
@@ -65,7 +80,9 @@ export default function OCLnmr(props) {
     setExternalHighlights([...allAtoms, ...linked]);
   }, [highlights, diaIDsIndex, diaIDs, molecule]);
 
-  const options = {
+  const options: IMolfileSvgRendererProps = {
+    OCL,
+    molfile,
     atomHighlight:
       overHighlights.length > 0 ? overHighlights : externalHighlights,
     atomHighlightOpacity:
@@ -77,7 +94,7 @@ export default function OCLnmr(props) {
       overHighlights.length > 0
         ? internalAtomHighlightColor
         : atomHighlightColor,
-    onAtomEnter: (atomID) => {
+    onAtomEnter: (atomID: number) => {
       setOverHighlights(diaIDsIndex[diaIDs[atomID].oclID]);
       setHoverAtom(diaIDs[atomID]);
     },
@@ -85,7 +102,7 @@ export default function OCLnmr(props) {
       setOverHighlights([]);
       setHoverAtom({});
     },
-    onAtomClick: (atomID, event) => {
+    onAtomClick: (atomID: number, event: MouseEvent) => {
       setSelectedAtom(diaIDs[atomID]);
       if (event.shiftKey) {
         setOverHighlights([]);
@@ -108,9 +125,5 @@ export default function OCLnmr(props) {
     },
   };
 
-  return (
-    <>
-      <MolfileSvgRenderer {...props} {...options} />
-    </>
-  );
+  return <MolfileSvgRenderer {...otherProps} {...options} />;
 }

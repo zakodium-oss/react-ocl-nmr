@@ -1,13 +1,14 @@
 {
   "name": "react-ocl-nmr",
-  "description": "A component to display chemical structure for NMR spectra assignments",
-  "module": "lib/components/OCLnmr.js",
-  "files": [
-    "lib"
-  ],
   "version": "0.3.0",
-  "homepage": ".",
-  "private": false,
+  "description": "A component to display chemical structure for NMR spectra assignments",
+  "main": "./lib/OCLnmr.js",
+  "module": "./lib-esm/OCLnmr.js",
+  "files": [
+    "src",
+    "lib",
+    "lib-esm"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zakodium/react-ocl-nmr.git"
@@ -22,59 +23,32 @@
     "openchemlib": "*"
   },
   "dependencies": {
-    "openchemlib-utils": "^0.6.1",
-    "react-ocl": "^4.3.1"
+    "openchemlib-utils": "^0.7.0",
+    "react-ocl": "^4.3.3"
   },
   "scripts": {
-    "clean-lib": "rimraf lib",
-    "compile": "babel src --out-dir lib --quiet",
-    "prepare": "npm run clean-lib && npm run compile",
-    "start": "npm run watch:css && react-scripts start",
-    "build": "npm run build:css && react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "eslint": "eslint src --ext js,jsx",
+    "check-types": "tsc --noEmit",
+    "clean": "rimraf lib lib-esm",
+    "eslint": "eslint src --cache",
     "eslint-fix": "npm run eslint -- --fix",
-    "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
-    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
-  },
-  "eslintConfig": {
-    "extends": "@zakodium/eslint-config/react",
-    "rules": {
-      "import/no-unresolved": "off",
-      "import/no-unassigned-import": "off"
-    }
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "prepublishOnly": "npm run tsc",
+    "test": "npm run eslint && npm run check-types",
+    "test-coverage": "npm run test-only -- --coverage",
+    "test-only": "jest",
+    "tsc": "npm run clean && npm run tsc-cjs && npm run tsc-esm",
+    "tsc-cjs": "tsc --project tsconfig.cjs.json",
+    "tsc-esm": "tsc --project tsconfig.esm.json"
   },
   "devDependencies": {
-    "@babel/cli": "^7.13.0",
-    "@babel/core": "^7.13.1",
-    "@babel/plugin-proposal-class-properties": "^7.13.0",
-    "@babel/preset-react": "^7.12.13",
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.7.3",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
     "@zakodium/eslint-config": "^3.0.1",
-    "autoprefixer": "^10.2.4",
     "eslint": "^7.20.0",
     "openchemlib": "^7.2.3",
-    "postcss-cli": "^8.3.1",
     "prettier": "^2.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "^4.0.3",
     "rimraf": "^3.0.2",
-    "tailwindcss": "^2.0.3"
+    "typescript": "^4.2.3"
   }
 }

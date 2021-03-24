@@ -1,13 +1,10 @@
 import {
-  initOCL,
   getDiastereotopicAtomIDsAndH,
   getAtomsInfo,
   // @ts-expect-error: TODO: add types or write in TS
 } from 'openchemlib-utils';
 import { useState, useMemo, useEffect, MouseEvent } from 'react';
 import { MolfileSvgRenderer, IMolfileSvgRendererProps } from 'react-ocl/base';
-
-export { initOCL };
 
 export interface OCLnmrProps
   extends Omit<

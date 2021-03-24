@@ -30,19 +30,10 @@ Callback for hover and clicked atom returns an object of the following kind:
 
 `oclID` contains the identifier of the selected / hovered atom and if hydrogens are connected to this atom an array of hydrogens are also available.
 
-## Install the library
+## Install the library with OpenChemLib
 
 ```console
 npm install react-ocl-nmr openchemlib
-```
-
-Then add to your application:
-
-```js
-import { initOCL } from 'react-ocl-nmr';
-import OCL from 'openchemlib'; // Or import any other OCL version that you need.
-
-initOCL(OCL);
 ```
 
 ## Demo of the project

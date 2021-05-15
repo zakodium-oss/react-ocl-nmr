@@ -1,4 +1,3 @@
-import React from 'react';
 import { IdcodeSvgRenderer } from 'react-ocl';
 
 export default function ClickedDebug(props) {

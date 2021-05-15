@@ -3,8 +3,8 @@ import {
   getAtomsInfo,
   // @ts-expect-error: TODO: add types or write in TS
 } from 'openchemlib-utils';
-import { useState, useMemo, useEffect, MouseEvent } from 'react';
 import { MolfileSvgRenderer, IMolfileSvgRendererProps } from 'react-ocl/base';
+import { useState, useMemo, useEffect, MouseEvent } from 'react';
 
 export interface OCLnmrProps
   extends Omit<
@@ -103,8 +103,8 @@ export default function OCLnmr(props: OCLnmrProps) {
       setSelectedAtom(diaIDs[atomID]);
       if (event.shiftKey) {
         setOverHighlights([]);
-        let implicitHydrogens = getAtomsInfo(molecule)[atomID]
-          .implicitHydrogens;
+        let implicitHydrogens =
+          getAtomsInfo(molecule)[atomID].implicitHydrogens;
         if (implicitHydrogens === 0) {
           let atomsToDelete = [];
           for (let i = 0; i < molecule.getAllConnAtoms(atomID); i++) {

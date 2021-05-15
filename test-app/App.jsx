@@ -1,10 +1,8 @@
 import OCL from 'openchemlib';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-import './assets/tailwind.css';
-
-import ClickedDebug from './components/ClickedDebug';
-import OCLnmr from './components/OCLnmr';
+import ClickedDebug from './ClickedDebug';
+import OCLnmr from '../src/OCLnmr';
 import { demoMolfile } from './demoMolfile';
 
 function App() {

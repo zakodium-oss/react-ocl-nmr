@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/zakodium/react-ocl-nmr/compare/v1.0.0...v1.1.0) (2021-06-22)
+
+
+### Features
+
+* add event in callback and update dependencies ([84f609c](https://www.github.com/zakodium/react-ocl-nmr/commit/84f609c5c07a9c42dd148e184fb82e19b5c4f8c8))
+
 ## [1.0.0](https://www.github.com/zakodium/react-ocl-nmr/compare/v0.4.0...v1.0.0) (2021-03-24)
 
 

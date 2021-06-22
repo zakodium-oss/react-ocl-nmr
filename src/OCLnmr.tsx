@@ -3,8 +3,8 @@ import {
   getAtomsInfo,
   // @ts-expect-error: TODO: add types or write in TS
 } from 'openchemlib-utils';
-import { MolfileSvgRenderer, IMolfileSvgRendererProps } from 'react-ocl/base';
 import { useState, useMemo, useEffect, MouseEvent } from 'react';
+import { MolfileSvgRenderer, IMolfileSvgRendererProps } from 'react-ocl/base';
 
 export interface OCLnmrProps
   extends Omit<

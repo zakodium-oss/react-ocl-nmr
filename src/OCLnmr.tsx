@@ -12,7 +12,7 @@ export interface OCLnmrProps
     'atomHighlight' | 'onAtomEnter' | 'onAtomLeave' | 'onAtomClick'
   > {
   setMolfile: (molfile: string) => void;
-  setSelectedAtom: (atom: any) => void;
+  setSelectedAtom: (atom: any,event: MouseEvent) => void;
   highlights: any[];
   setHoverAtom: (atom: any) => void;
   internalAtomHighlightColor?: string;
@@ -100,7 +100,7 @@ export default function OCLnmr(props: OCLnmrProps) {
       setHoverAtom({});
     },
     onAtomClick: (atomID: number, event: MouseEvent) => {
-      setSelectedAtom(diaIDs[atomID]);
+      setSelectedAtom(diaIDs[atomID],event);
       if (event.shiftKey) {
         setOverHighlights([]);
         let implicitHydrogens =

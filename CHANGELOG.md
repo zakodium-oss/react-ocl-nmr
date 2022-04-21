@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.1](https://www.github.com/zakodium/react-ocl-nmr/compare/v1.1.0...v1.1.1) (2022-04-21)
+
+
+### Bug Fixes
+
+* correct implicit H for last atom ([e9ba182](https://www.github.com/zakodium/react-ocl-nmr/commit/e9ba182031281f156fb0e9be24b6f4076ab038dd))
+
 ## [1.1.0](https://www.github.com/zakodium/react-ocl-nmr/compare/v1.0.0...v1.1.0) (2021-06-22)
 
 

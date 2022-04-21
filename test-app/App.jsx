@@ -1,8 +1,9 @@
 import OCL from 'openchemlib';
 import { useState, useEffect } from 'react';
 
-import ClickedDebug from './ClickedDebug';
 import OCLnmr from '../src/OCLnmr';
+
+import ClickedDebug from './ClickedDebug';
 import { demoMolfile } from './demoMolfile';
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
               highlights={highlights}
               arrows={arrows}
               internalAtomHighlightColor="blue"
-              internalAtomHighlightOpacity="0.7"
+              internalAtomHighlightOpacity={0.7}
             />
           </div>
           <div className="whitespace-normal">
@@ -43,8 +44,8 @@ function App() {
           <br />
           <textarea
             value={highlights.join(',')}
-            cols="30"
-            rows="10"
+            cols={30}
+            rows={10}
             type="text"
             className="border-2 border-gray-500"
             width="100"
@@ -55,26 +56,28 @@ function App() {
           <br />
           Set arrows:
           <table>
-            {grid.map((i) => (
-              <tr key={i}>
-                {grid.map((j) => (
-                  <td
-                    key={j}
-                    onClick={() => setArrows([{ atom1: i, atom2: j }])}
-                  >
-                    {i}-{j}
-                  </td>
-                ))}
-              </tr>
-            ))}
+            <tbody>
+              {grid.map((i) => (
+                <tr key={i}>
+                  {grid.map((j) => (
+                    <td
+                      key={j}
+                      onClick={() => setArrows([{ atom1: i, atom2: j }])}
+                    >
+                      {i}-{j}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
 
         <textarea
           value={molfile}
           className="font-mono text-sm"
-          cols="60"
-          rows="40"
+          cols={60}
+          rows={40}
           readOnly
         />
         <ClickedDebug selected={selectedAtom} onClick={setHighlights} />

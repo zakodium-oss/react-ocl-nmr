@@ -12,7 +12,7 @@ export interface OCLnmrProps
     'atomHighlight' | 'onAtomEnter' | 'onAtomLeave' | 'onAtomClick'
   > {
   setMolfile: (molfile: string) => void;
-  setSelectedAtom: (atom: any,event: MouseEvent) => void;
+  setSelectedAtom: (atom: any, event: MouseEvent) => void;
   highlights: any[];
   setHoverAtom: (atom: any) => void;
   internalAtomHighlightColor?: string;
@@ -68,7 +68,7 @@ export default function OCLnmr(props: OCLnmrProps) {
       if (!atoms) continue;
       allAtoms.push(...atoms);
       for (let atom of atoms) {
-        if (atom > molecule.getAllAtoms() && diaIDs[atom].heavyAtom) {
+        if (atom >= molecule.getAllAtoms() && diaIDs[atom].heavyAtom) {
           // implicit hydrogen
           linked.push(...diaIDsIndex[diaIDs[atom].heavyAtom]);
         }
@@ -100,7 +100,7 @@ export default function OCLnmr(props: OCLnmrProps) {
       setHoverAtom({});
     },
     onAtomClick: (atomID: number, event: MouseEvent) => {
-      setSelectedAtom(diaIDs[atomID],event);
+      setSelectedAtom(diaIDs[atomID], event);
       if (event.shiftKey) {
         setOverHighlights([]);
         let implicitHydrogens =

@@ -46,7 +46,7 @@ npm install react-ocl-nmr openchemlib
 
 [npm-image]: https://img.shields.io/npm/v/react-ocl-nmr.svg
 [npm-url]: https://www.npmjs.com/package/react-ocl-nmr
-[ci-image]: https://github.com/cheminfo/react-ocl-nmr/workflows/Node.js%20CI/badge.svg?branch=master
-[ci-url]: https://github.com/cheminfo/react-ocl-nmr/actions?query=workflow%3A%22Node.js+CI%22
+[ci-image]: https://github.com/zakodium/react-ocl-nmr/workflows/Node.js%20CI/badge.svg?branch=main
+[ci-url]: https://github.com/zakodium/react-ocl-nmr/actions?query=workflow%3A%22Node.js+CI%22
 [download-image]: https://img.shields.io/npm/dm/react-ocl-nmr.svg
 [download-url]: https://www.npmjs.com/package/react-ocl-nmr

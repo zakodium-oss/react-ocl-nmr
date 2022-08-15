@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/zakodium/react-ocl-nmr/compare/v1.1.1...v2.0.0) (2022-08-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* Requires OpenChemLib >=v8.
+
+### Miscellaneous Chores
+
+* update dependencies ([01ab689](https://github.com/zakodium/react-ocl-nmr/commit/01ab6899abf535307888fb3fec9c16cb44af6c87))
+
 ### [1.1.1](https://www.github.com/zakodium/react-ocl-nmr/compare/v1.1.0...v1.1.1) (2022-04-21)
 
 

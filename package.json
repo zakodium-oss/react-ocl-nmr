@@ -23,7 +23,7 @@
     "openchemlib": ">=8"
   },
   "dependencies": {
-    "openchemlib-utils": "^2.0.0",
+    "openchemlib-utils": "^2.1.2",
     "react-ocl": "^5.0.0"
   },
   "scripts": {

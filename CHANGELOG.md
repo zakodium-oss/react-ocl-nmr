@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.1.0](https://github.com/zakodium-oss/react-ocl-nmr/compare/v2.0.0...v2.1.0) (2023-08-03)
+
+
+### Features
+
+* add memo to calculate diastereotopic IDs ([#16](https://github.com/zakodium-oss/react-ocl-nmr/issues/16)) ([61f777b](https://github.com/zakodium-oss/react-ocl-nmr/commit/61f777bbe9770a1f59ac9e356a9cb7d3ff2fbade))
+
+
+### Bug Fixes
+
+* update openchemlib-utils to 2.1.2 ([#11](https://github.com/zakodium-oss/react-ocl-nmr/issues/11)) ([ed61721](https://github.com/zakodium-oss/react-ocl-nmr/commit/ed61721429b36b11d209cf87b862cdbeb9cf852d))
+
 ## [2.0.0](https://github.com/zakodium/react-ocl-nmr/compare/v1.1.1...v2.0.0) (2022-08-15)
 
 

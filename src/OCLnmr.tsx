@@ -1,9 +1,10 @@
+import type { Molecule } from 'openchemlib';
 import {
   getDiastereotopicAtomIDsAndH,
   getAtomsInfo,
   // @ts-expect-error: TODO: add types or write in TS
 } from 'openchemlib-utils';
-import { useState, useMemo, useEffect, MouseEvent } from 'react';
+import { useState, useMemo, MouseEvent, useRef } from 'react';
 import { MolfileSvgRenderer, IMolfileSvgRendererProps } from 'react-ocl/base';
 
 export interface OCLnmrProps
@@ -34,31 +35,30 @@ export default function OCLnmr(props: OCLnmrProps) {
     ...otherProps
   } = props;
   const [overHighlights, setOverHighlights] = useState<number[]>([]);
-  const [externalHighlights, setExternalHighlights] = useState<number[]>([]);
+
+  const cache = useRef<{
+    molecule: Molecule;
+    idCode: string;
+    diaIDs: any[];
+    diaIDsIndex: Record<string, number[]>;
+  }>({
+    molecule: new OCL.Molecule(0, 0),
+    idCode: '',
+    diaIDs: [],
+    diaIDsIndex: {},
+  });
 
   const { molecule, diaIDs, diaIDsIndex } = useMemo(() => {
-    const memoMolecule = OCL.Molecule.fromMolfile(molfile);
-    memoMolecule.ensureHelperArrays(OCL.Molecule.cHelperBitNeighbours);
-    memoMolecule.ensureHelperArrays(OCL.Molecule.cHelperNeighbours);
-    const memoDiaIDs = getDiastereotopicAtomIDsAndH(memoMolecule);
-    const memoDiaIDsIndex: Record<string, number[]> = {};
-    for (let i = 0; i < memoDiaIDs.length; i++) {
-      let diaID = memoDiaIDs[i];
-      diaID.atomLabel = memoMolecule.getAtomLabel(i) || 'H';
-      if (!memoDiaIDsIndex[diaID.oclID]) memoDiaIDsIndex[diaID.oclID] = [];
-      memoDiaIDsIndex[diaID.oclID].push(i);
+    const newMolecule = OCL.Molecule.fromMolfile(molfile);
+    const idCode = newMolecule.getIDCode();
+    if (idCode !== cache.current.idCode) {
+      const { diaIDs, diaIDsIndex } = getDiaIDs(newMolecule);
+      cache.current = { molecule: newMolecule, idCode, diaIDs, diaIDsIndex };
     }
-    for (let diaID of memoDiaIDs) {
-      diaID.nbAtoms = memoDiaIDsIndex[diaID.oclID].length;
-    }
-    return {
-      molecule: memoMolecule,
-      diaIDs: memoDiaIDs,
-      diaIDsIndex: memoDiaIDsIndex,
-    };
+    return cache.current;
   }, [molfile, OCL]);
 
-  useEffect(() => {
+  const externalHighlights = useMemo(() => {
     // if the highlight is a proton and there is no proton we will highlight the carbon
     let allAtoms = [];
     let linked = [];
@@ -74,7 +74,7 @@ export default function OCLnmr(props: OCLnmrProps) {
         }
       }
     }
-    setExternalHighlights([...allAtoms, ...linked]);
+    return [...allAtoms, ...linked];
   }, [highlights, diaIDsIndex, diaIDs, molecule]);
 
   const options: IMolfileSvgRendererProps = {
@@ -123,4 +123,22 @@ export default function OCLnmr(props: OCLnmrProps) {
   };
 
   return <MolfileSvgRenderer {...otherProps} {...options} />;
+}
+
+function getDiaIDs(molecule: Molecule) {
+  const memoDiaIDs = getDiastereotopicAtomIDsAndH(molecule);
+  const memoDiaIDsIndex: Record<string, number[]> = {};
+  for (let i = 0; i < memoDiaIDs.length; i++) {
+    let diaID = memoDiaIDs[i];
+    diaID.atomLabel = molecule.getAtomLabel(i) || 'H';
+    if (!memoDiaIDsIndex[diaID.oclID]) memoDiaIDsIndex[diaID.oclID] = [];
+    memoDiaIDsIndex[diaID.oclID].push(i);
+  }
+  for (let diaID of memoDiaIDs) {
+    diaID.nbAtoms = memoDiaIDsIndex[diaID.oclID].length;
+  }
+  return {
+    diaIDs: memoDiaIDs,
+    diaIDsIndex: memoDiaIDsIndex,
+  };
 }

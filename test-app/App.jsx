@@ -1,5 +1,5 @@
 import OCL from 'openchemlib';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import OCLnmr from '../src/OCLnmr';
 
@@ -21,68 +21,66 @@ function App() {
   const grid = [1, 2, 3, 4, 5, 6, 7, 8];
 
   return (
-    <>
-      <div className="flex flex-wrap">
-        <div className="flex-col">
-          <div>
-            <OCLnmr
-              OCL={OCL}
-              molfile={molfile}
-              setMolfile={setMolfile}
-              setSelectedAtom={setSelectedAtom}
-              setHoverAtom={setHoverAtom}
-              highlights={highlights}
-              arrows={arrows}
-              internalAtomHighlightColor="blue"
-              internalAtomHighlightOpacity={0.7}
-            />
-          </div>
-          <div className="whitespace-normal">
-            Highlights ID. You may enter here
-            <br />a list of diastereotopic ID
-          </div>
-          <br />
-          <textarea
-            value={highlights.join(',')}
-            cols={30}
-            rows={10}
-            type="text"
-            className="border-2 border-gray-500"
-            width="100"
-            onChange={(event) =>
-              setHighlights(event.target.value.split(/[, \r\n\t]+/))
-            }
+    <div className="flex flex-wrap">
+      <div className="flex-col">
+        <div>
+          <OCLnmr
+            OCL={OCL}
+            molfile={molfile}
+            setMolfile={setMolfile}
+            setSelectedAtom={setSelectedAtom}
+            setHoverAtom={setHoverAtom}
+            highlights={highlights}
+            arrows={arrows}
+            internalAtomHighlightColor="blue"
+            internalAtomHighlightOpacity={0.7}
           />
-          <br />
-          Set arrows:
-          <table>
-            <tbody>
-              {grid.map((i) => (
-                <tr key={i}>
-                  {grid.map((j) => (
-                    <td
-                      key={j}
-                      onClick={() => setArrows([{ atom1: i, atom2: j }])}
-                    >
-                      {i}-{j}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
-
+        <div className="whitespace-normal">
+          Highlights ID. You may enter here
+          <br />a list of diastereotopic ID
+        </div>
+        <br />
         <textarea
-          value={molfile}
-          className="font-mono text-sm"
-          cols={60}
-          rows={40}
-          readOnly
+          value={highlights.join(',')}
+          cols={30}
+          rows={10}
+          type="text"
+          className="border-2 border-gray-500"
+          width="100"
+          onChange={(event) =>
+            setHighlights(event.target.value.split(/[, \r\n\t]+/))
+          }
         />
-        <ClickedDebug selected={selectedAtom} onClick={setHighlights} />
+        <br />
+        Set arrows:
+        <table>
+          <tbody>
+            {grid.map((i) => (
+              <tr key={i}>
+                {grid.map((j) => (
+                  <td
+                    key={j}
+                    onClick={() => setArrows([{ atom1: i, atom2: j }])}
+                  >
+                    {i}-{j}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-    </>
+
+      <textarea
+        value={molfile}
+        className="font-mono text-sm"
+        cols={60}
+        rows={40}
+        readOnly
+      />
+      <ClickedDebug selected={selectedAtom} onClick={setHighlights} />
+    </div>
   );
 }
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/zakodium-oss/react-ocl-nmr/compare/v2.1.0...v2.2.0) (2023-08-04)
+
+
+### Features
+
+* update react-ocl to allow label ([b15c799](https://github.com/zakodium-oss/react-ocl-nmr/commit/b15c799baff2709b396c4d55f23af619cae3315c))
+
 ## [2.1.0](https://github.com/zakodium-oss/react-ocl-nmr/compare/v2.0.0...v2.1.0) (2023-08-03)
 
 

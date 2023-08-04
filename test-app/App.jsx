@@ -31,7 +31,8 @@ function App() {
             setSelectedAtom={setSelectedAtom}
             setHoverAtom={setHoverAtom}
             highlights={highlights}
-            arrows={arrows}
+            label="A label p"
+            labelFontSize={15}
             internalAtomHighlightColor="blue"
             internalAtomHighlightOpacity={0.7}
           />

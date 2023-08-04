@@ -25,7 +25,7 @@
   "dependencies": {
     "openchemlib": "^8.3.0",
     "openchemlib-utils": "^3.1.0",
-    "react-ocl": "^6.0.0"
+    "react-ocl": "^6.0.2"
   },
   "scripts": {
     "check-types": "tsc --noEmit",

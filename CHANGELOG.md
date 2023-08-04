@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.1](https://github.com/zakodium-oss/react-ocl-nmr/compare/v2.2.0...v2.2.1) (2023-08-04)
+
+
+### Bug Fixes
+
+* update dependencies and fix label position ([1214725](https://github.com/zakodium-oss/react-ocl-nmr/commit/1214725fafe991551186c273508961f77016ba2e))
+
 ## [2.2.0](https://github.com/zakodium-oss/react-ocl-nmr/compare/v2.1.0...v2.2.0) (2023-08-04)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/zakodium-oss/react-ocl-nmr/compare/v2.2.1...v2.3.0) (2023-08-04)
+
+
+### Features
+
+* add labelColor ([95914b2](https://github.com/zakodium-oss/react-ocl-nmr/commit/95914b2231e35b83c03d2b748d8f5888f91eeee0))
+
 ## [2.2.1](https://github.com/zakodium-oss/react-ocl-nmr/compare/v2.2.0...v2.2.1) (2023-08-04)
 
 

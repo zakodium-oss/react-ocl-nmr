@@ -1,11 +1,9 @@
 import type { Molecule } from 'openchemlib';
-import {
-  getDiastereotopicAtomIDsAndH,
-  getAtomsInfo,
-  // @ts-expect-error: TODO: add types or write in TS
-} from 'openchemlib-utils';
 import { useState, useMemo, MouseEvent, useRef } from 'react';
 import { MolfileSvgRenderer, IMolfileSvgRendererProps } from 'react-ocl/base';
+
+import { getDiaIDs } from './getDiaIDs';
+import { toggleHydrogens } from './toggleHydrogens';
 
 export interface OCLnmrProps
   extends Omit<
@@ -103,42 +101,11 @@ export default function OCLnmr(props: OCLnmrProps) {
       setSelectedAtom(diaIDs[atomID], event);
       if (event.shiftKey) {
         setOverHighlights([]);
-        let implicitHydrogens =
-          getAtomsInfo(molecule)[atomID].implicitHydrogens;
-        if (implicitHydrogens === 0) {
-          let atomsToDelete = [];
-          for (let i = 0; i < molecule.getAllConnAtoms(atomID); i++) {
-            let connectedAtom = molecule.getConnAtom(atomID, i);
-            if (molecule.getAtomicNo(connectedAtom) === 1) {
-              atomsToDelete.push(connectedAtom);
-            }
-          }
-          molecule.deleteAtoms(atomsToDelete);
-        } else {
-          molecule.addImplicitHydrogens(atomID);
-        }
+        toggleHydrogens(molecule, atomID);
         setMolfile(molecule.toMolfileV3());
       }
     },
   };
-
   return <MolfileSvgRenderer {...otherProps} {...options} />;
 }
 
-function getDiaIDs(molecule: Molecule) {
-  const memoDiaIDs = getDiastereotopicAtomIDsAndH(molecule);
-  const memoDiaIDsIndex: Record<string, number[]> = {};
-  for (let i = 0; i < memoDiaIDs.length; i++) {
-    let diaID = memoDiaIDs[i];
-    diaID.atomLabel = molecule.getAtomLabel(i) || 'H';
-    if (!memoDiaIDsIndex[diaID.oclID]) memoDiaIDsIndex[diaID.oclID] = [];
-    memoDiaIDsIndex[diaID.oclID].push(i);
-  }
-  for (let diaID of memoDiaIDs) {
-    diaID.nbAtoms = memoDiaIDsIndex[diaID.oclID].length;
-  }
-  return {
-    diaIDs: memoDiaIDs,
-    diaIDsIndex: memoDiaIDsIndex,
-  };
-}

@@ -5,7 +5,8 @@
     "sourceMap": true,
     "strict": true,
     "target": "es2020",
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "skipLibCheck": true
   },
   "include": ["./src/**/*"]
 }

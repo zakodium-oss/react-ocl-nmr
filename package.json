@@ -23,8 +23,8 @@
     "openchemlib": ">=8"
   },
   "dependencies": {
-    "openchemlib": "^8.4.0",
-    "openchemlib-utils": "^4.2.1",
+    "openchemlib": "^8.5.0",
+    "openchemlib-utils": "^4.3.0",
     "react-ocl": "^6.1.0"
   },
   "scripts": {
@@ -48,9 +48,9 @@
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.4",
     "@zakodium/eslint-config": "^6.0.0",
-    "eslint": "^8.46.0",
-    "postcss": "^8.4.27",
-    "prettier": "^3.0.1",
+    "eslint": "^8.47.0",
+    "postcss": "^8.4.28",
+    "prettier": "^3.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^5.0.1",

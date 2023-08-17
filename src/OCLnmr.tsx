@@ -1,9 +1,7 @@
 import type { Molecule } from 'openchemlib';
+import { TopicMolecule, toggleHydrogens } from 'openchemlib-utils';
 import { useState, useMemo, MouseEvent, useRef } from 'react';
 import { MolfileSvgRenderer, IMolfileSvgRendererProps } from 'react-ocl/base';
-
-import { getDiaIDs } from './getDiaIDs';
-import { toggleHydrogens } from './toggleHydrogens';
 
 export interface OCLnmrProps
   extends Omit<
@@ -35,49 +33,54 @@ export default function OCLnmr(props: OCLnmrProps) {
   const [overHighlights, setOverHighlights] = useState<number[]>([]);
 
   const cache = useRef<{
+    topicMolecule: TopicMolecule;
+    normalizedMolfile: string;
     molecule: Molecule;
-    idCode: string;
-    diaIDs: any[];
-    diaIDsIndex: Record<string, number[]>;
   }>({
+    topicMolecule: new TopicMolecule(new OCL.Molecule(0, 0)),
+    normalizedMolfile: '',
     molecule: new OCL.Molecule(0, 0),
-    idCode: '',
-    diaIDs: [],
-    diaIDsIndex: {},
   });
 
-  const { molecule, diaIDs, diaIDsIndex } = useMemo(() => {
-    const newMolecule = OCL.Molecule.fromMolfile(molfile);
-    const idCode = newMolecule.getIDCode();
-    if (idCode !== cache.current.idCode) {
-      const { diaIDs, diaIDsIndex } = getDiaIDs(newMolecule);
-      cache.current = { molecule: newMolecule, idCode, diaIDs, diaIDsIndex };
-    }
+  const { normalizedMolfile, molecule, topicMolecule } = useMemo(() => {
+    const topicMolecule = cache.current.topicMolecule.fromMolecule(
+      OCL.Molecule.fromMolfile(molfile),
+    );
+    const normalizedMolfile = topicMolecule.toMolfile({ version: 3 });
+    cache.current = {
+      topicMolecule,
+      normalizedMolfile,
+      molecule: topicMolecule.getMolecule(),
+    };
     return cache.current;
   }, [molfile, OCL]);
 
   const externalHighlights = useMemo(() => {
     // if the highlight is a proton and there is no proton we will highlight the carbon
     let allAtoms = [];
-    let linked = [];
+    let currentHighlights = [...highlights];
+    // we receive an array of diaIDs to highlight
+    for (let highlight of currentHighlights) {
+      let atomIDs = getAtomIDsFromDiaID(topicMolecule, highlight);
+      if (!atomIDs) continue;
+      allAtoms.push(...atomIDs);
 
-    for (let highlight of highlights) {
-      let atoms = diaIDsIndex[highlight];
-      if (!atoms) continue;
-      allAtoms.push(...atoms);
-      for (let atom of atoms) {
-        if (atom >= molecule.getAllAtoms() && diaIDs[atom].heavyAtom) {
-          // implicit hydrogen
-          linked.push(...diaIDsIndex[diaIDs[atom].heavyAtom]);
+      for (let atomID of atomIDs) {
+        if (
+          atomID >= topicMolecule.molecule.getAllAtoms() &&
+          topicMolecule.diaIDsAndInfo[atomID].heavyAtom
+        ) {
+          // implicit hydrogen, we display the linked heavy atom
+          currentHighlights.push(topicMolecule.diaIDsAndInfo[atomID].heavyAtom);
         }
       }
     }
-    return [...allAtoms, ...linked];
-  }, [highlights, diaIDsIndex, diaIDs, molecule]);
+    return [...allAtoms];
+  }, [highlights, topicMolecule]);
 
   const options: IMolfileSvgRendererProps = {
     OCL,
-    molfile,
+    molfile: normalizedMolfile,
     atomHighlight:
       overHighlights.length > 0 ? overHighlights : externalHighlights,
     atomHighlightOpacity:
@@ -90,15 +93,19 @@ export default function OCLnmr(props: OCLnmrProps) {
         ? internalAtomHighlightColor
         : atomHighlightColor,
     onAtomEnter: (atomID: number) => {
-      setOverHighlights(diaIDsIndex[diaIDs[atomID].oclID]);
-      setHoverAtom(diaIDs[atomID]);
+      setHoverAtom(topicMolecule.diaIDsAndInfo[atomID]);
+      const atomIDs = getAtomIDsFromDiaID(
+        topicMolecule,
+        topicMolecule.diaIDs[atomID],
+      );
+      setOverHighlights(atomIDs);
     },
     onAtomLeave: () => {
       setOverHighlights([]);
       setHoverAtom({});
     },
     onAtomClick: (atomID: number, event: MouseEvent) => {
-      setSelectedAtom(diaIDs[atomID], event);
+      setSelectedAtom(topicMolecule.diaIDsAndInfo[atomID], event);
       if (event.shiftKey) {
         setOverHighlights([]);
         toggleHydrogens(molecule, atomID);
@@ -109,3 +116,12 @@ export default function OCLnmr(props: OCLnmrProps) {
   return <MolfileSvgRenderer {...otherProps} {...options} />;
 }
 
+function getAtomIDsFromDiaID(topicMolecule: TopicMolecule, diaID: string) {
+  const atomIDs = [];
+  for (let i = 0; i < topicMolecule.diaIDs.length; i++) {
+    if (topicMolecule.diaIDs[i] === diaID) {
+      atomIDs.push(i);
+    }
+  }
+  return atomIDs;
+}

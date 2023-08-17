@@ -1,5 +1,9 @@
 import type { Molecule } from 'openchemlib';
-import { TopicMolecule, toggleHydrogens } from 'openchemlib-utils';
+import {
+  DiaIDAndInfo,
+  TopicMolecule,
+  toggleHydrogens,
+} from 'openchemlib-utils';
 import { useState, useMemo, MouseEvent, useRef } from 'react';
 import { MolfileSvgRenderer, IMolfileSvgRendererProps } from 'react-ocl/base';
 
@@ -9,9 +13,9 @@ export interface OCLnmrProps
     'atomHighlight' | 'onAtomEnter' | 'onAtomLeave' | 'onAtomClick'
   > {
   setMolfile: (molfile: string) => void;
-  setSelectedAtom: (atom: any, event: MouseEvent) => void;
+  setSelectedAtom: (atom: DiaIDAndInfo | undefined, event: MouseEvent) => void;
   highlights: any[];
-  setHoverAtom: (atom: any) => void;
+  setHoverAtom: (atom?: DiaIDAndInfo) => void;
   internalAtomHighlightColor?: string;
   internalAtomHighlightOpacity?: number;
 }
@@ -102,7 +106,7 @@ export default function OCLnmr(props: OCLnmrProps) {
     },
     onAtomLeave: () => {
       setOverHighlights([]);
-      setHoverAtom({});
+      setHoverAtom();
     },
     onAtomClick: (atomID: number, event: MouseEvent) => {
       setSelectedAtom(topicMolecule.diaIDsAndInfo[atomID], event);

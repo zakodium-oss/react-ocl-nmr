@@ -2,22 +2,23 @@ import { IdcodeSvgRenderer } from 'react-ocl';
 
 export default function ClickedDebug(props) {
   let { selected, onClick } = props;
-
   return (
     <>
       {selected && (
         <>
           <div className="flex-col">
             <p className="text-xl">Selected</p>
-            <pre>{selected.oclID}</pre>
-            <div onClick={() => onClick([selected.oclID])}>
-              {selected.oclID && <IdcodeSvgRenderer idcode={selected.oclID} />}
+            <pre>{selected.idCode}</pre>
+            <div onClick={() => onClick([selected.idCode])}>
+              {selected.idCode && (
+                <IdcodeSvgRenderer idcode={selected.idCode} />
+              )}
             </div>
           </div>
-          {selected.nbHydrogens && (
+          {selected.nbAttachedHydrogens && (
             <div className="flex-col">
               <p className="text-xl">List of hydrogens</p>
-              {props.selected.hydrogenOCLIDs.map((oclid) => (
+              {props.selected.attachedHydrogensIDCodes.map((oclid) => (
                 <div key={oclid}>
                   <pre>{oclid}</pre>
                   <div onClick={() => onClick([oclid])}>

@@ -1,5 +1,21 @@
 # Changelog
 
+## [3.0.0](https://github.com/zakodium-oss/react-ocl-nmr/compare/v2.3.0...v3.0.0) (2023-08-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* The callback object is different and properties have been renamed: ``` {   "idCode": "gGPHADIMmURTAbJ`RHgBj@",   "attachedHydrogensIDCodes": [     "gNpDALzHRVvjjH`OtbADj`"   ],   "nbAttachedHydrogens": 3,   "atomLabel": "C",   "nbEquivalentAtoms": 1,   "atomMapNo": 0 } ```
+
+### Features
+
+* use TopicMolecule to deal with diaIDs ([#20](https://github.com/zakodium-oss/react-ocl-nmr/issues/20)) ([cafe891](https://github.com/zakodium-oss/react-ocl-nmr/commit/cafe89116627b622d101853616322f20db059565))
+
+
+### Bug Fixes
+
+* add correct types on callback ([ff4f86a](https://github.com/zakodium-oss/react-ocl-nmr/commit/ff4f86a226a8f860f061a657a6e6af340695e5fc))
+
 ## [2.3.0](https://github.com/zakodium-oss/react-ocl-nmr/compare/v2.2.1...v2.3.0) (2023-08-04)
 
 

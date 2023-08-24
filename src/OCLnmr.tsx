@@ -1,9 +1,6 @@
 import type { Molecule } from 'openchemlib';
-import {
-  DiaIDAndInfo,
-  TopicMolecule,
-  toggleHydrogens,
-} from 'openchemlib-utils';
+import { TopicMolecule, toggleHydrogens } from 'openchemlib-utils';
+import type { DiaIDAndInfo } from 'openchemlib-utils';
 import { useState, useMemo, MouseEvent, useRef } from 'react';
 import { MolfileSvgRenderer, IMolfileSvgRendererProps } from 'react-ocl/base';
 

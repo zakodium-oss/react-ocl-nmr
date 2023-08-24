@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "openchemlib": "^8.5.0",
-    "openchemlib-utils": "^4.3.2",
+    "openchemlib-utils": "^5.2.0",
     "react-ocl": "^6.1.0"
   },
   "scripts": {
@@ -44,7 +44,7 @@
     "tsc-esm": "tsc --project tsconfig.esm.json"
   },
   "devDependencies": {
-    "@types/react": "^18.2.20",
+    "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.4",
     "@zakodium/eslint-config": "^6.0.0",

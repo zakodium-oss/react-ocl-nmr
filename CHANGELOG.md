@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.2](https://github.com/zakodium-oss/react-ocl-nmr/compare/v3.0.1...v3.0.2) (2024-06-28)
+
+
+### Bug Fixes
+
+* update dependencies ([6dd15ac](https://github.com/zakodium-oss/react-ocl-nmr/commit/6dd15acad3bb244d4e68884b2673e1e61f1fdcda))
+
 ## [3.0.1](https://github.com/zakodium-oss/react-ocl-nmr/compare/v3.0.0...v3.0.1) (2023-08-24)
 
 

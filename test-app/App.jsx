@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import OCLnmr from '../src/OCLnmr';
 
 import ClickedDebug from './ClickedDebug';
+//import { demoLarge as demoMolfile } from './demoMolfile';
 import { demoMolfile } from './demoMolfile';
 
 function App() {

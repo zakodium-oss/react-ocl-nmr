@@ -109,6 +109,7 @@ export default function OCLnmr(props: OCLnmrProps) {
       setSelectedAtom(topicMolecule.diaIDsAndInfo[atomID], event);
       if (event.shiftKey) {
         setOverHighlights([]);
+        setHoverAtom();
         toggleHydrogens(molecule, atomID);
         setMolfile(molecule.toMolfileV3());
       }

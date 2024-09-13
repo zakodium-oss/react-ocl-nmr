@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "openchemlib": "^8.15.0",
-    "openchemlib-utils": "^6.4.0",
+    "openchemlib-utils": "^6.4.1",
     "react-ocl": "^6.1.0"
   },
   "scripts": {
@@ -44,18 +44,18 @@
     "tsc-esm": "tsc --project tsconfig.esm.json"
   },
   "devDependencies": {
-    "@types/react": "^18.3.3",
+    "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "@zakodium/eslint-config": "^6.0.0",
     "eslint": "^8.47.0",
-    "postcss": "^8.4.40",
+    "postcss": "^8.4.45",
     "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "rimraf": "^5.0.7",
-    "tailwindcss": "^3.4.7",
-    "typescript": "^5.5.4",
-    "vite": "^5.3.5"
+    "rimraf": "^6.0.1",
+    "tailwindcss": "^3.4.11",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.5"
   }
 }

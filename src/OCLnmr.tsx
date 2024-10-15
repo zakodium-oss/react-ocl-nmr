@@ -1,12 +1,15 @@
 import type { Molecule } from 'openchemlib';
-import { TopicMolecule, toggleHydrogens } from 'openchemlib-utils';
 import type { DiaIDAndInfo } from 'openchemlib-utils';
-import { useState, useMemo, MouseEvent, useRef } from 'react';
-import { MolfileSvgRenderer, IMolfileSvgRendererProps } from 'react-ocl/base';
+import { toggleHydrogens, TopicMolecule } from 'openchemlib-utils';
+import { type MouseEvent, useMemo, useRef, useState } from 'react';
+import {
+  BaseMolfileSvgRenderer,
+  type BaseMolfileSvgRendererProps,
+} from 'react-ocl/base';
 
 export interface OCLnmrProps
   extends Omit<
-    IMolfileSvgRendererProps,
+    BaseMolfileSvgRendererProps,
     'atomHighlight' | 'onAtomEnter' | 'onAtomLeave' | 'onAtomClick'
   > {
   setMolfile: (molfile: string) => void;
@@ -58,15 +61,15 @@ export default function OCLnmr(props: OCLnmrProps) {
 
   const externalHighlights = useMemo(() => {
     // if the highlight is a proton and there is no proton we will highlight the carbon
-    let allAtoms = [];
-    let currentHighlights = [...highlights];
+    const allAtoms = [];
+    const currentHighlights = [...highlights];
     // we receive an array of diaIDs to highlight
-    for (let highlight of currentHighlights) {
-      let atomIDs = getAtomIDsFromDiaID(topicMolecule, highlight);
+    for (const highlight of currentHighlights) {
+      const atomIDs = getAtomIDsFromDiaID(topicMolecule, highlight);
       if (!atomIDs) continue;
       allAtoms.push(...atomIDs);
 
-      for (let atomID of atomIDs) {
+      for (const atomID of atomIDs) {
         if (
           atomID >= topicMolecule.molecule.getAllAtoms() &&
           topicMolecule.diaIDsAndInfo[atomID].heavyAtom
@@ -79,7 +82,7 @@ export default function OCLnmr(props: OCLnmrProps) {
     return [...allAtoms];
   }, [highlights, topicMolecule]);
 
-  const options: IMolfileSvgRendererProps = {
+  const options: BaseMolfileSvgRendererProps = {
     OCL,
     molfile: normalizedMolfile,
     atomHighlight:
@@ -115,7 +118,7 @@ export default function OCLnmr(props: OCLnmrProps) {
       }
     },
   };
-  return <MolfileSvgRenderer {...otherProps} {...options} />;
+  return <BaseMolfileSvgRenderer {...otherProps} {...options} />;
 }
 
 function getAtomIDsFromDiaID(topicMolecule: TopicMolecule, diaID: string) {

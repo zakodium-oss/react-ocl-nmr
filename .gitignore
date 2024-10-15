@@ -118,4 +118,4 @@ dist
 .DS_Store
 
 lib
-lib-esm
+lib-cjs

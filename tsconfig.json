@@ -1,12 +1,23 @@
 {
   "compilerOptions": {
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "strict": true,
-    "target": "es2020",
+    "lib": ["DOM", "ES2022"],
+    "types": [],
+    "target": "ES2022",
+    "outDir": "lib",
     "jsx": "react-jsx",
-    "skipLibCheck": true
+    "module": "NodeNext",
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": false,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": false,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true
   },
-  "include": ["./src/**/*"]
+  "include": ["src",
+    "vite.config.ts"
+  ]
 }

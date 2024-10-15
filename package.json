@@ -2,22 +2,28 @@
   "name": "react-ocl-nmr",
   "version": "3.0.3",
   "description": "A component to display chemical structure for NMR spectra assignments",
-  "main": "./lib/OCLnmr.js",
-  "module": "./lib-esm/OCLnmr.js",
+  "type": "module",
   "files": [
-    "src",
     "lib",
-    "lib-esm"
+    "lib-cjs",
+    "src"
   ],
+  "exports": {
+    ".": {
+      "types": "./lib/OCLnmr.d.ts",
+      "require": "./lib-cjs/OCLnmr.js",
+      "default": "./lib/OCLnmr.js"
+    }
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zakodium/react-ocl-nmr.git"
+    "url": "git+https://github.com/zakodium-oss/react-ocl-nmr.git"
   },
   "keywords": [],
   "author": "Luc Patiny",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zakodium/react-ocl-nmr/issues"
+    "url": "https://github.com/zakodium-oss/react-ocl-nmr/issues"
   },
   "peerDependencies": {
     "openchemlib": ">=8"
@@ -25,11 +31,11 @@
   "dependencies": {
     "openchemlib": "^8.15.0",
     "openchemlib-utils": "^6.4.1",
-    "react-ocl": "^6.1.0"
+    "react-ocl": "^7.0.2"
   },
   "scripts": {
     "check-types": "tsc --noEmit",
-    "clean": "rimraf lib lib-esm",
+    "clean": "rimraf lib lib-cjs",
     "dev": "vite",
     "eslint": "eslint src --cache",
     "eslint-fix": "npm run eslint -- --fix",
@@ -41,21 +47,22 @@
     "test-only": "jest",
     "tsc": "npm run clean && npm run tsc-cjs && npm run tsc-esm",
     "tsc-cjs": "tsc --project tsconfig.cjs.json",
+    "posttsc-cjs": "echo '{\"type\":\"commonjs\"}' > lib-cjs/package.json",
     "tsc-esm": "tsc --project tsconfig.esm.json"
   },
   "devDependencies": {
-    "@types/react": "^18.3.5",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "@zakodium/eslint-config": "^6.0.0",
-    "eslint": "^8.47.0",
-    "postcss": "^8.4.45",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.2",
+    "eslint": "^9.12.0",
+    "eslint-config-zakodium": "^13.0.0",
+    "postcss": "^8.4.47",
     "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "rimraf": "^6.0.1",
-    "tailwindcss": "^3.4.11",
-    "typescript": "^5.6.2",
-    "vite": "^5.4.5"
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.9"
   }
 }

@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/zakodium-oss/react-ocl-nmr/compare/v3.0.3...v3.1.0) (2024-10-15)
+
+
+### Features
+
+* make module native ESM ([e1e8304](https://github.com/zakodium-oss/react-ocl-nmr/commit/e1e8304fdcb8b696e60575ac0ae8d1b5dd2feb1e))
+
 ## [3.0.3](https://github.com/zakodium-oss/react-ocl-nmr/compare/v3.0.2...v3.0.3) (2024-09-13)
 
 

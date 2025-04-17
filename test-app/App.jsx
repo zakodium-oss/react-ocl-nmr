@@ -1,5 +1,4 @@
-import OCL from 'openchemlib';
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import OCLnmr from '../src/OCLnmr';
 
@@ -26,7 +25,6 @@ function App() {
       <div className="flex-col">
         <div>
           <OCLnmr
-            OCL={OCL}
             molfile={molfile}
             setMolfile={setMolfile}
             setSelectedAtom={setSelectedAtom}

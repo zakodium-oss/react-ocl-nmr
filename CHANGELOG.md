@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/zakodium-oss/react-ocl-nmr/compare/v3.1.0...v4.0.0) (2025-04-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* update OCL to v9
+
+### Features
+
+* update OCL to v9 ([433bbd1](https://github.com/zakodium-oss/react-ocl-nmr/commit/433bbd1b339e0036d221c9f4e7ac4196dc0d655a))
+
 ## [3.1.0](https://github.com/zakodium-oss/react-ocl-nmr/compare/v3.0.3...v3.1.0) (2024-10-15)
 
 

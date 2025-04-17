@@ -1,6 +1,6 @@
 {
   "name": "react-ocl-nmr",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "description": "A component to display chemical structure for NMR spectra assignments",
   "type": "module",
   "files": [

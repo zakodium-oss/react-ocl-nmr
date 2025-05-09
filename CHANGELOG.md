@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/zakodium-oss/react-ocl-nmr/compare/v4.0.0...v4.0.1) (2025-05-09)
+
+
+### Bug Fixes
+
+* update openchemlib-utils ([419e875](https://github.com/zakodium-oss/react-ocl-nmr/commit/419e87522053321654a1e6a5bcd7f7138551e060))
+
 ## [4.0.0](https://github.com/zakodium-oss/react-ocl-nmr/compare/v3.1.0...v4.0.0) (2025-04-17)
 
 

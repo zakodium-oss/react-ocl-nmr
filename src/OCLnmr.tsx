@@ -112,6 +112,7 @@ export default function OCLnmr(props: OCLnmrProps) {
         setHoverAtom();
         toggleHydrogens(molecule, atomID);
         setMolfile(molecule.toMolfileV3());
+        event.preventDefault();
       }
     },
     onChange: setMolfile,

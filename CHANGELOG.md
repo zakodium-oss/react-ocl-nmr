@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.1.1](https://github.com/zakodium-oss/react-ocl-nmr/compare/v4.1.0...v4.1.1) (2025-08-29)
+
+
+### Bug Fixes
+
+* don't trigger label edition on shift click ([#36](https://github.com/zakodium-oss/react-ocl-nmr/issues/36)) ([9ffa1e4](https://github.com/zakodium-oss/react-ocl-nmr/commit/9ffa1e45ddd92fc2b38c51f9f0d7063894250cde))
+* OCLnmrProps do not need `onChange` ([#33](https://github.com/zakodium-oss/react-ocl-nmr/issues/33)) ([f878f7e](https://github.com/zakodium-oss/react-ocl-nmr/commit/f878f7e733030d8df919e83621cd664ee37c6158))
+
 ## [4.1.0](https://github.com/zakodium-oss/react-ocl-nmr/compare/v4.0.1...v4.1.0) (2025-08-29)
 
 

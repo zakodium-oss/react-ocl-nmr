@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/zakodium-oss/react-ocl-nmr/compare/v4.0.1...v4.1.0) (2025-08-29)
+
+
+### Features
+
+* custom label editable on OCLnmr ([#31](https://github.com/zakodium-oss/react-ocl-nmr/issues/31)) ([717f246](https://github.com/zakodium-oss/react-ocl-nmr/commit/717f246d7e64dcbb44fa8e4993851069124e90c3))
+
 ## [4.0.1](https://github.com/zakodium-oss/react-ocl-nmr/compare/v4.0.0...v4.0.1) (2025-05-09)
 
 

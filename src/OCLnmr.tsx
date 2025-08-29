@@ -3,12 +3,12 @@ import type { DiaIDAndInfo } from 'openchemlib-utils';
 import { toggleHydrogens, TopicMolecule } from 'openchemlib-utils';
 import { useMemo, useRef, useState } from 'react';
 import type { MouseEvent } from 'react';
-import { MolfileSvgRenderer } from 'react-ocl';
-import type { MolfileSvgRendererProps } from 'react-ocl';
+import { MolfileSvgEditor } from 'react-ocl';
+import type { MolfileSvgEditorProps } from 'react-ocl';
 
 export interface OCLnmrProps
   extends Omit<
-    MolfileSvgRendererProps,
+    MolfileSvgEditorProps,
     'atomHighlight' | 'onAtomEnter' | 'onAtomLeave' | 'onAtomClick'
   > {
   setMolfile: (molfile: string) => void;
@@ -80,7 +80,7 @@ export default function OCLnmr(props: OCLnmrProps) {
     return [...allAtoms];
   }, [highlights, topicMolecule]);
 
-  const options: MolfileSvgRendererProps = {
+  const options: MolfileSvgEditorProps = {
     molfile: normalizedMolfile,
     atomHighlight:
       overHighlights.length > 0 ? overHighlights : externalHighlights,
@@ -114,8 +114,9 @@ export default function OCLnmr(props: OCLnmrProps) {
         setMolfile(molecule.toMolfileV3());
       }
     },
+    onChange: setMolfile,
   };
-  return <MolfileSvgRenderer {...otherProps} {...options} />;
+  return <MolfileSvgEditor {...otherProps} {...options} />;
 }
 
 function getAtomIDsFromDiaID(topicMolecule: TopicMolecule, diaID: string) {

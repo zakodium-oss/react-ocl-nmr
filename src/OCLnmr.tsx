@@ -9,7 +9,7 @@ import type { MolfileSvgEditorProps } from 'react-ocl';
 export interface OCLnmrProps
   extends Omit<
     MolfileSvgEditorProps,
-    'atomHighlight' | 'onAtomEnter' | 'onAtomLeave' | 'onAtomClick'
+    'atomHighlight' | 'onAtomEnter' | 'onAtomLeave' | 'onAtomClick' | 'onChange'
   > {
   setMolfile: (molfile: string) => void;
   setSelectedAtom: (atom: DiaIDAndInfo | undefined, event: MouseEvent) => void;
